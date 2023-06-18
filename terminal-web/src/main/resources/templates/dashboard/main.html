@@ -1,0 +1,91 @@
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>AkfaDealer CRM 1.0 Main App</title>
+
+    <meta name="description"
+          content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by istart and published on Themeforest">
+    <meta name="author" content="istart">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework">
+    <meta property="og:site_name" content="OneUI">
+    <meta property="og:description"
+          content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by istart and published on Themeforest">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <!-- Icons -->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="/media/favicons/favicon.ico">
+<!--    <link rel="alternate" href="/company/favicon">-->
+    <!-- END Icons -->
+
+    <!-- Stylesheets -->
+    <!-- Fonts and OneUI framework -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+    <link rel="stylesheet" id="css-main" href="/css/oneui.min.css">
+
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="/css/themes/amethyst.min.css"> -->
+    <!-- END Stylesheets -->
+</head>
+
+<body>
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!-- Your Block -->
+    <div class="row">
+
+        <div class="col-xl-6">
+            <div class="block block-rounded">
+                <div class="block-header" style="background-color: #1F2A37C2">
+                    <h3 class="block-title" style="color: white">[[#{page.klassGroup}]]</h3>
+                </div>
+                <div class="block-content block-content-full text-center">
+                    <div class="py-3 px-xxl-7">
+                        <canvas id="infographicClassGroupPie"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6">
+            <div class="block block-rounded">
+                <div class="block-header" style="background-color: #1F2A37C2">
+                    <h3 class="block-title" style="color: white">[[#{page.klass}]]</h3>
+                </div>
+                <div class="block-content block-content-full text-center">
+                    <div class="py-3 px-xxl-7">
+                        <canvas id="infographicClassPie"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12">
+            <div class="block block-rounded">
+                <div class="block-header" style="background-color: #1F2A37C2">
+                    <h3 class="block-title" style="color: white">[[#{chart.class.group.by.regions}]]</h3>
+                </div>
+                <div class="block-content block-content-full text-center">
+                    <div class="py-3">
+                        <canvas id="technographicClassGroupBar" style="width: 100%; height: 100%"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Your Block -->
+</div>
+<!-- END Page Content -->
+
+<!-- Dashboard JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/dashboard/main.js}"></script>
+</section>
+</body>
+</html>

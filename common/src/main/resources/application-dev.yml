@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    username: "myadmin"
+    password: "myadmin"
+    url: "jdbc:postgresql://localhost:5432/organization-service"
+  sql:
+    init:
+      encoding: UTF-8
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database: postgresql
+
+

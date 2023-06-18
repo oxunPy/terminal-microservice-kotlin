@@ -1,0 +1,17 @@
+server:
+  port: 8761
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  application:
+    name: "terminal-server"
+  banner:
+    location: classpath:custom-banner.txt
+    charset: UTF-8

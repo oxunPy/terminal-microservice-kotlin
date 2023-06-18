@@ -1,0 +1,57 @@
+/* table */
+.table thead th {
+    text-transform: none;
+    font-size: .875rem;
+}
+
+.table tbody td {
+    font-size: .875rem;
+}
+
+/* body */
+body {
+    font-size: .875rem;
+}
+
+/* btn */
+.btn {
+    font-size: .875rem;
+}
+
+/* h5 */
+.h5, h5 {
+    font-size: 1rem;
+}
+
+/* custom */
+.c-min {
+    width: 1% !important;
+    white-space: nowrap;
+}
+
+.c-max {
+    width: 100% !important;
+}
+
+.form-control {
+    font-size: .875rem;
+}
+
+.text-danger {
+    color: red !important;
+}
+
+.modal-dialog > .modal-content > .modal-header > h5.modal-title {
+    color: white;
+    text-transform: uppercase
+}
+
+.color-orange {
+    background-color: #FFCC99
+}
+
+/* select2(single, multiple) uchun small size (bunda .select2-sm parent elementiga beriladi) */
+.select2-sm .select2-selection--single,
+.select2-sm .select2-selection--multiple {
+    height: calc(1.5em + 0.5rem + 2px) !important;
+}

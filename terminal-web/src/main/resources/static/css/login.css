@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.container {
+    max-width: 1140px;
+    /*width: 55%;*/
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.login{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateY(-50%);
+
+}
+.login_intro{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.login_picture img{
+    width:336px ;
+    height:337px ;
+}
+.login_form_logo{
+    margin-bottom: 36px;
+}
+.form{
+    width: 45%;
+}
+.form_control{
+    margin-bottom: 20px;
+}
+.form_control input{
+    width: 100%;
+    outline: none;
+    padding: 15px 65px 15px 15px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #A5A5A5;
+    background: #F7F8F9;
+    border: 1px solid #CBD5DE;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+}
+.form_control input:focus{
+    background: #FFFFFF;
+    border: 1px solid #F65447;
+    border-radius: 6px;
+    color: black;
+}
+.toggle_button{
+    width: 15%;
+    height: 100%;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+}
+.on_toggle{
+    background-color: cyan;
+}
+.form_control_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+}
+.form_control_checkbox{
+    display: flex;
+}
+.form_control_checkbox label{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    margin-left: 8px;
+}
+.form_control_forget_password a{
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #F65447;
+}
+.login_button{
+    border: none;
+    margin-bottom: 25px;
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: #E7372C;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+.form_control_about_account{
+    display: flex;
+    justify-content: space-around;
+}
+.form_control_about_account p{
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #6C7585;
+}
+.form_control_about_account a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #F65447;
+}
+@media only screen and (max-width: 1200px){
+
+    .container{
+        width: 100%;
+    }
+    .form{
+        width: 50%;
+    }
+    .login_intro{
+        display: flex;
+        justify-content: space-around;
+    }
+}
+@media only screen and (max-width: 768px){
+    /*Small smartphones [325px -> 425px]*/
+    .container{
+        width: 100%;
+    }
+  .login_picture{
+      display: none;
+  }
+    .form{
+        width: 100%;
+    }
+}
+
+.alt-1{
+    position: relative;
+}
+
+.show-passwords {
+    -webkit-text-security:none ;
+    /* https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-text-security */
+}
+
+.form-error-msg {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: red;
+    font-weight: 500;
+}
+
+/* hide default EYE ICON in password field */
+input::-ms-reveal, input::-ms-clear {
+    display: none;
+}

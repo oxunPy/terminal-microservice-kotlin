@@ -1,0 +1,31 @@
+function formatDate(date){
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    return dd + '/' + mm + '/' + yyyy;
+}
+
+function formatMoneyRateUSD(rate){
+    const formatter = new Intl.NumberFormat('en-US',{
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 3
+    })
+    return formatter.format(rate);
+}
+
+function formatMoneyRateUZS(rate){
+    const formatter = new Intl.NumberFormat('uz-Uz',{
+        style: 'currency',
+        currency: 'UZS',
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 3
+    });
+    return formatter.format(rate);
+}

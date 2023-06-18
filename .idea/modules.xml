@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/store/store.iml" filepath="$PROJECT_DIR$/store/store.iml" />
+      <module fileurl="file://$PROJECT_DIR$/terminal-app-microservice.iml" filepath="$PROJECT_DIR$/terminal-app-microservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/terminal-mobile/terminal-mobile.iml" filepath="$PROJECT_DIR$/terminal-mobile/terminal-mobile.iml" />
+      <module fileurl="file://$PROJECT_DIR$/terminal-telegram-bot/terminal-telegram-bot.iml" filepath="$PROJECT_DIR$/terminal-telegram-bot/terminal-telegram-bot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/terminal-telegram-bot-api/terminal-telegram-bot-api.iml" filepath="$PROJECT_DIR$/terminal-telegram-bot-api/terminal-telegram-bot-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/terminal-web/terminal-web.iml" filepath="$PROJECT_DIR$/terminal-web/terminal-web.iml" />
+    </modules>
+  </component>
+</project>

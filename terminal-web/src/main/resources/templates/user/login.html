@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>[[#{page.title(#{page.login})}]]</title>
+    <link rel="shortcut icon" href="/company/favicon">
+    <link rel="stylesheet" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<div class="login">
+    <div class="container">
+        <div class="login_intro">
+            <div class="login_picture">
+<!--                <img src="/media/window_and_door.svg">-->
+                <img src="/company/logo">
+            </div>
+            <div class="form">
+                <form action="/login" method="post">
+                    <div class="login_form_logo">
+                        <img src="/media/logo/logo_akfa.svg" >
+                    </div>
+                    <!-- Form Error-->
+                    <div>
+                        <div class="form-error-msg" th:if="${error}">
+                            [[#{login.error}]]
+                        </div>
+                        <div class="form-error-msg" th:if="${denied}">
+                            [[#{login.denied}]]
+                        </div>
+                    </div>
+                    <div class="form_control">
+                        <input type="text" name="username" th:placeholder="#{label.username}">
+                    </div>
+                    <div class="form_control alt-1">
+                        <input type="password" name="password" class="input_password" th:placeholder="#{label.password}">
+                        <button type="button" class="toggle_button">
+                            <i class="fa-solid  fa-eye-low-vision "></i>
+                        </button>
+                    </div>
+                    <div class="form_control_wrapper">
+                        <div class="form_control_checkbox">
+                            <input id="remember_me" type="checkbox"/>
+                            <label for="remember_me">[[#{login.remember}]]</label>
+                        </div>
+                        <div class="form_control_forget_password">
+                            <a href="#">[[#{login.forgot}]]</a>
+                        </div>
+                    </div>
+                    <button type="submit" class="login_button">[[#{login.signIn}]]</button>
+                    <div class="form_control_about_account">
+                        <p>[[#{login.dontHaveAnAccount}]]</p>
+                        <a href="#">[[#{login.signUpForFree}]]</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="application/javascript" th:src="@{/js/oneui.core.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/dataUtil.js}"></script>
+<!-- onload da UI translate ni ishlatish -->
+<script type="application/javascript" th:src="@{/js/plugins/localeplanet/translate.min.js}" onload="DataModule.i18n({success: function (data) {_.setTranslation(data);}})"></script>
+<script>
+    const button = document.querySelector("button");
+    const oldMethodInput = document.querySelector(".input_password");
+    const faSolidEye = document.querySelector(".fa-eye-low-vision")
+    button.addEventListener("click", () => {
+        faSolidEye.classList.toggle('fa-eye')
+        oldMethodInput.classList.toggle('show-passwords')
+        if (oldMethodInput.getAttribute("type") === "text") {
+            oldMethodInput.setAttribute("type", "password");
+        } else {
+            oldMethodInput.setAttribute("type", "text");
+        }
+    });
+</script>
+</body>
+</html>

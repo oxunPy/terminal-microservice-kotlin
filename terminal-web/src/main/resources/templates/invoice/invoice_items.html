@@ -1,0 +1,52 @@
+<!--get invoice items by invoice id-->
+
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>[[#{page.title(#{page.dealer})}]]</title>
+</head>
+<body>
+<!-- Page Content -->
+<div layout:fragment="content">
+    <!--        Dynamic Page Full-->
+    <div class="content-narrow content-full">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
+            <div class="flex-sm-grow-1">
+                <h1 class="h3 fw-bold mb-2">page.invoiceItem</h1>
+                <input type="hidden" id="invoiceId" name="invoiceId" th:value="${invoiceId}">
+            </div>
+            <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-alt">
+                    <li class="breadcrumb-item">
+                        <a class="link-fx" href="/page/invoices">page.invoice</a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="block">
+        <div class="block-content block-content-full">
+            <table id="dataTable" class="table table-sm table-bordered table-hover table-responsive table-striped table-vcenter c-max">
+                <thead>
+                <tr>
+                    <th h class="c-min text-center" style="vertical-align: top">[[{#label.id}]]</th>
+                    <th h class="c-min text-center" style="vertical-align: top">[[#{label.productName}]]</th>
+                    <th h class="c-min text-center" style="vertical-align: top">[[#{label.quantity}]]</th>
+                    <th h class="c-min text-center" style="vertical-align: top">[[#{label.rate}]]</th>
+                    <th h class="c-min text-center" style="vertical-align: top">[[#{label.sellingRate}]]</th>
+                    <th h class="c-min text-center" style="vertical-align: top">[[#{label.originalRate}]]</th>
+                    <th h class="c-min text-center" style="vertical-align: top">[[#{label.currency}]]</th>
+                    <th h class="c-min text-center" style="vertical-align: top">[[#{label.total}]]</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<!--End Dynamic Full Table-->
+<!-- User List JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/invoice/invoice_items.js}"></script>
+</section>
+</body>
+</html>

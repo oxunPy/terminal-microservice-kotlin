@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: "terminal-web"
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/prodaja-desktop"
+    username: "myadmin"
+    password: "myadmin"
+  banner:
+    charset: UTF-8
+    location: classpath:custom-banner.txt
+  main:
+    allow-bean-definition-overriding: true
+#img
+upload:
+  folder:
+    img: "/TERMINAL/img"
+#excel
+download:
+  template:
+    csv: "/TERMINAL/file"
+server:
+  port: 8082

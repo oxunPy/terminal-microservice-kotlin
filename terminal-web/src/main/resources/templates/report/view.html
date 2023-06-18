@@ -1,0 +1,80 @@
+<!--search by barcode or product name-->
+<!--calculate product ostatok by productId and warehouseId-->
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.springframework.org/schema/jdbc" lang="ru">
+<head>
+    <title>[[#{page.title(#{page.report})}]]</title>
+</head>
+<body>
+<!-- Page Header -->
+<div layout:fragment="page-header">
+    <div class="content content-full">
+
+    </div>
+</div>
+<!-- End Header -->
+
+<!-- Page Content -->
+<div layout:fragment="content">
+    <div class="content-header content-full">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-1">
+            <div class="flex-sm-grow-1">
+                <h1 class="h3 fw-bold mb-2">page.invoice</h1>
+            </div>
+        </div>
+    </div>
+    <!--        Dynamic Page Full-->
+    <div class="block">
+        <div class="block-content block-content-full">
+            <div class="bg-body-light py-2 mb-2">
+                <div class="row" id="filterBtn">
+                    <div class="col-md-12 text-right">
+                        <a href="javascript:void(0)" class="info text-lowercase"><em>[[#{action.changeFilterTerms}]]</em></a>
+                    </div>
+                </div>
+                <div class="row" id="filterArea">
+                    <div class="col-md-3">
+                        <label>[[#{label.from}]]</label>
+                        <input name="fromDate" type="date" class="form-control form-control-sm"/>
+                    </div>
+                    <div class="col-md-3">
+                        <label>[[#{label.to}]]</label>
+                        <input name="toDate" type="date" class="form-control form-control-sm"/>
+                    </div>
+                    <div class="col-md-2 justify-content-center">
+                        <div class="btn-group align-self-center">
+                            <button onclick="doFilter()" type="button" class="btn btn-sm btn-outline-secondary"
+                                    th:title="#{action.filter}">
+                                <i class="fa fa-filter"></i>
+                            </button>
+                            <button onclick="clearFilter()" type="button" class="btn btn-sm btn-outline-secondary"
+                                    th:title="#{action.clearFilter}">
+                                <i class="fa fa-filter-slash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table id="dataTable" class="table table-sm table-bordered table-hover table-responsive table-striped table-vcenter c-max">
+                <thead>
+                <tr>
+                    <th class="c-min text-center" style="vertical-align: top">invoiceItemId</th>
+                    <th class="c-min text-center" style="vertical-align: top">dateOfSell</th>
+                    <th class="c-min text-center" style="vertical-align: top">productQuantity</th>
+                    <th class="c-min text-center" style="vertical-align: top">productPrice</th>
+                    <th class="c-min text-center" style="vertical-align: top">typeOfOperation</th>
+                    <th class="c-min text-center" style="vertical-align: top">productName</th>
+                    <th class="c-min text-center" style="vertical-align: top">priceCurrency</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+End Dynamic Full Table
+<!-- User List JS -->
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/report/report.js}"></script>
+</section>
+</body>
+</html>

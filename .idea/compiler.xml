@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="server" />
+        <module name="common" />
+        <module name="terminal-mobile" />
+        <module name="terminal-telegram-bot" />
+        <module name="store" />
+        <module name="terminal-web" />
+        <module name="terminal-telegram-bot-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common" target="17" />
+      <module name="notification" target="17" />
+      <module name="server" target="17" />
+      <module name="store" target="11" />
+      <module name="terminal-mobile" target="11" />
+      <module name="terminal-telegram-bot" target="11" />
+      <module name="terminal-telegram-bot-api" target="11" />
+      <module name="terminal-web" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common" options="-parameters" />
+      <module name="notification" options="-parameters" />
+      <module name="server" options="-parameters" />
+      <module name="store" options="-parameters" />
+      <module name="terminal-mobile" options="-parameters" />
+      <module name="terminal-telegram-bot" options="-parameters" />
+      <module name="terminal-telegram-bot-api" options="-parameters" />
+      <module name="terminal-web" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.springframework.org/schema/data/jaxb" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>AkfaDealer CRM 1.0 - Layout</title>
+
+    <meta name="description" content="OneUI - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Icons Layout-->
+    <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
+    <link rel="shortcut icon" href="/company/favicon">
+<!--    <link rel="alternate" href="/company/favicon">-->
+    <!-- END Icons -->
+
+    <!-- Stylesheets Layout -->
+    <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" th:href="@{/js/plugins/datatables/dataTables.bootstrap4.css}">
+    <link rel="stylesheet" th:href="@{/js/plugins/datatables/buttons-bs4/buttons.bootstrap4.min.css}">
+
+    <!-- Fonts and OneUI framework -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
+    <link rel="stylesheet" th:href="@{/css/oneui.css}">
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome-actions/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/mystyle.min.css}">
+    <link rel="stylesheet" th:href="@{/js/plugins/flag-icon-css-master/css/flag-icon.css}">
+    <link rel="stylesheet" th:href="@{/js/plugins/select2/css/select2.css}">
+    <link rel="stylesheet" th:href="@{/js/plugins/select2Tree/select2totree.css}">
+    <link rel="stylesheet" th:href="@{/js/plugins/flatpickr/flatpickr.css}">
+    <link rel="stylesheet" th:href="@{/js/plugins/bootstrap-toggle/bootstrap4-toggle.css}">
+    <link rel="stylesheet" th:href="@{../../css/datatable.css}">
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/@geoapify/leaflet-address-search-plugin@^1/dist/L.Control.GeoapifyAddressSearch.min.css" />
+
+    <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
+    <!-- <link rel="stylesheet" id="css-theme" href="/css/themes/amethyst.min.css"> -->
+    <!-- END Stylesheets -->
+</head>
+
+<body>
+<!-- Page Container -->
+
+<div id="page-container" class="sidebar-o sidebar-dark enable-page-overlay side-scroll page-header-fixed">
+
+
+    <!-- Side Overlay-->
+    <aside th:replace="fragments/aside :: aside">
+        This sidebar content is going to be replaced.
+    </aside>
+    <!-- END Side Overlay -->
+
+    <!-- Sidebar -->
+    <div th:replace="fragments/sidebar :: sidebar">
+        This sidebar content is going to be replaced.
+    </div>
+    <!-- END Sidebar -->
+
+<!--     Header-->
+    <div th:replace="fragments/header :: header" >
+        This header content is going to be replaced.
+    </div>
+<!--     END Header-->
+
+    <!-- Main Container -->
+    <main id="main-container">
+        <!-- Page Header -->
+<!--        <div layout:fragment="page-header" class="bg-body-light">-->
+<!--            &lt;!&ndash; TODO Page Header shu yerda yaratiladi &ndash;&gt;-->
+<!--        </div>-->
+        <!-- END Page Header -->
+
+        <!-- Page Content -->
+        <div layout:fragment="content" class="content">
+            <!-- TODO Main content shu yerda yaratiladi -->
+        </div>
+        <!-- END Page Content -->
+    </main>
+    <!-- END Main Container -->
+
+    <!-- Footer -->
+    <footer th:insert="fragments/footer :: footer" class="footer">
+        This content will remain, but other content will be inserted after it.
+    </footer>
+    <!-- END Footer -->
+
+    <!-- Apps Modal -->
+    <!-- Opens from the modal toggle button in the header -->
+    <div class="modal fade" id="one-modal-apps" tabindex="-1" role="dialog" aria-labelledby="one-modal-apps" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-top modal-sm" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Apps</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content block-content-full">
+                        <div class="row gutters-tiny">
+                            <div class="col-6">
+                                <!-- CRM -->
+                                <a class="block block-rounded block-themed bg-default" href="javascript:void(0)">
+                                    <div class="block-content text-center">
+                                        <i class="si si-speedometer fa-2x text-white-75"></i>
+                                        <p class="font-w600 font-size-sm text-white mt-2 mb-3">
+                                            CRM
+                                        </p>
+                                    </div>
+                                </a>
+                                <!-- END CRM -->
+                            </div>
+                            <div class="col-6">
+                                <!-- Products -->
+                                <a class="block block-rounded block-themed bg-danger" href="javascript:void(0)">
+                                    <div class="block-content text-center">
+                                        <i class="si si-rocket fa-2x text-white-75"></i>
+                                        <p class="font-w600 font-size-sm text-white mt-2 mb-3">
+                                            Products
+                                        </p>
+                                    </div>
+                                </a>
+                                <!-- END Products -->
+                            </div>
+                            <div class="col-6">
+                                <!-- Sales -->
+                                <a class="block block-rounded block-themed bg-success mb-0" href="javascript:void(0)">
+                                    <div class="block-content text-center">
+                                        <i class="si si-plane fa-2x text-white-75"></i>
+                                        <p class="font-w600 font-size-sm text-white mt-2 mb-3">
+                                            Sales
+                                        </p>
+                                    </div>
+                                </a>
+                                <!-- END Sales -->
+                            </div>
+                            <div class="col-6">
+                                <!-- Payments -->
+                                <a class="block block-rounded block-themed bg-warning mb-0" href="javascript:void(0)">
+                                    <div class="block-content text-center">
+                                        <i class="si si-wallet fa-2x text-white-75"></i>
+                                        <p class="font-w600 font-size-sm text-white mt-2 mb-3">
+                                            Payments
+                                        </p>
+                                    </div>
+                                </a>
+                                <!-- END Payments -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END Apps Modal -->
+</div>
+<!-- END Page Container -->
+
+<!-- Page JS Plugins -->
+<script type="application/javascript" th:src="@{/js/oneui.core.min.js}"></script>
+<!-- oneui JS Code -->
+<script type="application/javascript" th:src="@{/js/oneui.app.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/globalErrorHandle.js}"></script>
+<!-- User JS Code -->
+
+<script type="application/javascript" th:src="@{/js/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/dataTables.bootstrap4.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/buttons/dataTables.buttons.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/pages/be_tables_datatables.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/buttons/buttons.print.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/buttons/buttons.html5.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/buttons/buttons.flash.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/datatables/buttons/buttons.colVis.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/flatpickr/flatpickr.js}"></script>
+<!-- sweetalert Js Code-->
+<script type="application/javascript" th:src="@{/js/plugins/sweetalert2/sweetalert2.all.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/bootstrap-notify/bootstrap-notify.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/jquery.maskedinput/jquery.maskedinput.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/app.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/select2/js/select2.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/select2Tree/select2totree.js}"></script>
+<!-- chart -->
+<script type="application/javascript" th:src="@{/js/plugins/chart.js/chart.min.js}"></script>
+<script type="application/javascript" th:src="@{/js/dataUtil.js}"></script>
+<script type="application/javascript" th:src="@{/js/plugins/bootstrap-toggle/bootstrap4-toggle.min.js}"></script>
+<!-- onload da UI translate ni ishlatish -->
+<script type="application/javascript" th:src="@{/js/plugins/localeplanet/translate.min.js}" onload="DataModule.i18n({success: function (data) {_.setTranslation(data);}})"></script>
+<!-- CKEDITOR5 -->
+<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+<!--<script src="https://dl.dropboxusercontent.com/s/hb9vf8r4vz7imyy/ckeditor.js"></script>-->
+<!--<script src="https://ckeditor.com/docs/ckeditor5/latest/snippets/features/base64-upload/snippet.js"></script>-->
+<!--<script src="file:///C:/Users/xursh/node_modules/@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter.js"></script>-->
+<!-- leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+<script src="https://unpkg.com/@geoapify/leaflet-address-search-plugin@^1/dist/L.Control.GeoapifyAddressSearch.min.js"></script>
+<section layout:fragment="scripts">
+</section>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: "common"
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+    banner-mode: console
+  banner:
+    location: classpath:custom-banner.txt
+server:
+  port: 8081
+

@@ -1,0 +1,13 @@
+telegram:
+  bot:
+    token:  "5303865117:AAEgMWLrfTON3ZHvEqjIeRR24LLNBMx8p9I"
+    username: "@xo_tic_tac_toe_bot"
+spring:
+  main:
+    allow-circular-references: true
+
+  application:
+    name: "terminal-telegram-bot"
+  banner:
+    charset: UTF-8
+    location: classpath:custom-banner.txt

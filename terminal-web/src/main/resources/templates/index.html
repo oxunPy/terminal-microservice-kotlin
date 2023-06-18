@@ -1,0 +1,24 @@
+<!--<html xmlns:th="https://www.thymeleaf.org">-->
+<!--    <body>-->
+
+<!--    </body>-->
+<!--</html>-->
+
+<!--get invoice items by invoice id-->
+
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.springframework.org/schema/jdbc">
+<head>
+    <title>[[#{page.title(#{left.menu.apiConnection})}]]</title>
+</head>
+    <body>
+        <!-- Page Content -->
+        <div layout:fragment="content">
+            <div class="content-center-m text-center">
+<!--                    <div class="block-content block-content-full">-->
+                <h1 th:text="${text}" style="font-family: 'Berlin Sans FB'; text-align: center"/>
+                <img th:src="${qrCodeContent}"/>
+            </div>
+        </div>
+    </body>
+</html>

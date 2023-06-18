@@ -1,0 +1,385 @@
+<!--search by barcode or product name-->
+<!--calculate product ostatok by productId and warehouseId-->
+<html layout:decorate="~{layouts/backend}" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.springframework.org/schema/jdbc" lang="ru">
+<head>
+    <title>[[#{page.title(#{page.product})}]]</title>
+    <style>
+        .nav-link > .active {
+            color: #fff!important;
+            border-color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+<!-- Page Content -->
+<div layout:fragment="content">
+    <div class="content-header content-full">
+        <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-1">
+            <div class="flex-sm-grow-1">
+                <h1 class="h3 fw-bold mb-2">[[#{page.product}]]</h1>
+            </div>
+        </div>
+    </div>
+    <!--        Dynamic Page Full-->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-right bg-body-light py-2 mb-2 d-flex justify-content-between">
+                <div class="dt-buttons d-flex justify-content-start">
+                    <div class="pl-1">
+                        <button onclick="openUploadModal()" type="button" data-toggle="modal"
+                                data-target="#exampleModalCenter"
+                                class="btn btn-sm btn-outline-success">
+                            <i class="fa fa-fw fa-file-excel-o-arrow-down mr-1"></i>[[#{action.importExcel}]]
+                        </button>
+                        <button onclick="exportExcel()" id="btnExportExcel" type="button"
+                                class="btn btn-sm btn-outline-success">
+                            <i class="fa fa-fw fa-file-excel-o-arrow-up mr-1"></i>[[#{action.exportExcel}]]
+                        </button>
+                    </div>
+                </div>
+                <div class="dt-buttons d-flex justify-content-end">
+                    <div class="pl-1">
+                        <button onclick="openAddModal()" type="button" class="btn btn-sm btn-outline-success">
+                            <i class="fa fa-fw fa-plus mr-1"></i>[[#{action.add}]]
+                        </button>
+                        <button onclick="openEditModal()" type="button" class="btn btn-sm btn-outline-warning">
+                            <i class="fa fa-fw fa-edit mr-1"></i>[[#{action.edit}]]
+                        </button>
+                        <button onclick="openDeleteModal()" type="button" class="btn btn-sm btn-outline-danger">
+                            <i class="fa fa-fw fa-trash mr-1"></i>[[#{action.delete}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="block-content block-content-full">
+            <table id="dataTable"
+                   class="table table-sm table-bordered table-hover table-responsive table-striped table-vcenter c-max">
+                <thead>
+                <tr>
+                    <th class="c-min text-center" style="vertical-align: top">[[#{label.id}]]</th>
+                    <th class="c-min text-center" style="vertical-align: top">[[#{label.productName}]]</th>
+                    <th class="c-min text-wrap text-center" style="vertical-align: top">[[#{label.barcode}]]</th>
+                    <th class="c-min text-wrap text-center" style="vertical-align: top">[[#{label.productGroupName}]]
+                    </th>
+                    <th class="c-min text-wrap text-center" style="vertical-align: top">[[#{label.rate}]]</th>
+                    <th class="c-min text-wrap text-center" style="vertical-align: top">[[#{label.originalRate}]]</th>
+                    <th class="c-min text-center" style="vertical-align: top">[[#{label.currency}]]</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <!--    Excel upload -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-body-color-dark" id="exampleModalCenterTitle">UPLOAD EXCEL TEMPLATE</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center" style="padding-bottom: 0px !important;padding-top: 0px !important;">
+                    <div style="border: 2px dotted #a9abb6;">
+                        <h3>Upload products excel</h3>
+                        <div id="dropBox" class="content-top">
+                            <p>Files Supported: CSV</p>
+                            <input type="file" hidden
+                                   accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                   id="fileID" style="display:none;">
+                            <button class="btn btn-primary" id="btnForFile">Choose File</button>
+                        </div>
+                        <div>
+                            <hr style="margin-left: 10px; margin-right: 10px">
+                        </div>
+
+                        <p><a href="/products/template/excel" class="tooltip-test"
+                              title="Download Product Excel Template">This link</a> shows template to upload product
+                            excel</p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btnUploadExcel" disabled>Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--ADD OR EDIT Modal-->
+    <div class="modal fade" id="addAndEditModal" role="dialog" aria-labelledby="addAndEditModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-header"></div>
+            <div class="modal-content" style="min-height: 350px;">
+                <div class="modal-body" style="margin: 0; padding: 0">
+                    <div class="modal-header bg-primary-dark">
+                        <h5 class="modal-title">[[#{title.add(#{page.product})}]]</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="row col-xl-12">
+                        <ul class="nav nav-pills" id="Tabs">
+                            <li class="nav-item">
+                                <a href="#info" class="nav-link active" data-toggle="tab">[[#{label.info}]]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#price" class="nav-link" data-toggle="tab">[[#{label.price}]]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#images" class="nav-link" data-toggle="tab">[[#{label.images}]]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#size" class="nav-link" data-toggle="tab">[[#{label.size}]]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#color" class="nav-link" data-toggle="tab">[[#{label.color}]]</a>
+                            </li>
+                        </ul>
+                        <div style="padding: 10px; width: 100%" class="tab-content">
+                            <!--PRODUCT INFO-->
+                            <div id="info" class="tab-pane fade show active">
+                                <form id="fProductInfo" method="post" enctype="multipart/form-data">
+                                    <div class="col-xl-12">
+                                        <input name="id" type="hidden" th:value="${productId}"/>
+                                        <div class="container">
+                                            <div class="row">
+                                                <div id="productName" class="col-md-6" style="resize: none">
+                                                    <label>[[#{label.name}]]</label>
+                                                    <input class="form-control" name="name" type="text" style="width: 100%">
+                                                </div>
+                                                <div id="productUnit0" class="col-md-6" style="resize: none">
+                                                    <label>[[#{label.base.unit}]]</label>
+                                                    <select name="unitId" style="width:100%"
+                                                            data-placeholder="select a base-unit"></select>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-bottom: 10px; resize: none">
+                                                <div id="productBarcode" class="col-md-6">
+                                                    <label>[[#{label.barcode}]]</label>
+                                                    <input class="form-control" name="barcode" type="text"
+                                                           style="width:100%">
+                                                </div>
+
+                                                <div id="productUnit1" class="col-md-6" style="resize: none">
+                                                    <label>[[#{label.base.unit}]]</label>
+                                                    <select name="unitId" style="width:100%"
+                                                            data-placeholder="select a base-unit"></select>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div id="productGroup" class="col-md-6">
+                                                    <label>[[#{label.productGroup}]]</label>
+                                                    <select name="groupId" style="width: 100%"
+                                                            data-placeholder="select a product-group"></select>
+                                                </div>
+                                                <div class="col-md-6" id="unitEquality" style="display: none">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="padding-right: 0">
+                                                            <label>Where</label>
+                                                            <div style="display: flex; align-items: baseline">
+                                                                <input class="form-control" name="baseUnit0Val" type="number" style="width: 100%; margin-right: 2px">
+                                                                <label style="font-weight: bold" name="baseUnit0Text">KG</label>
+                                                                <label style="font-weight: bold; margin-left: 10px; margin-right: 10px">=</label>
+                                                                <input class="form-control" name="baseUnit1Val" type="number" style="margin-right: 2px">
+                                                                <label style="font-weight: bold" name="baseUnit1Text">SHT</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- PRODUCT-PRICE -->
+                            <div id="price" class="tab-pane fade" style="width: 100%">
+                                <div class="col-xl-12">
+                                    <div class="row" style="width: 100%">
+                                        <input type="hidden" name="productId"/>
+                                        <div class="col-xl-6" style="padding-right: 0">
+                                            <label>[[#{label.buyPrice}]]</label>
+                                            <table id="ppBuy" class="table table-sm table-bordered table-hover table-responsive table-striped table-vcenter c-max">
+                                                <thead>
+                                                <tr>
+                                                    <th class="c-min text-center" style="vertical-align: top">[[#{label.id}]]</th>
+                                                    <th class="c-min text-center" style="vertical-align: top">[[#{label.date}]]</th>
+                                                    <th class="c-min text-center" style="vertical-align: top">[[#{label.standardCost}]]</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div class="col-xl-6" style="padding-right: 0">
+                                            <label>[[#{label.sellingPrice}]]</label>
+                                            <table id="ppSell"
+                                                   class="table table-sm table-bordered table-hover table-responsive table-striped table-vcenter c-max">
+                                                <thead>
+                                                <tr>
+                                                    <th class="c-min text-center" style="vertical-align: top">[[#{label.id}]]</th>
+                                                    <th class="c-min text-center" style="vertical-align: top">[[#{label.date}]]</th>
+                                                    <th class="c-min text-center" style="vertical-align: top">[[#{label.standardCost}]]</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="width: 100%">
+                                        <div class="col-md-2" style="resize: none; padding-right: 0; padding-top: 5px">
+                                            <input class="form-control" name="ppDate" type="date" style="width: 100%;">
+                                        </div>
+                                        <div class="col-md-2" style="resize: none; padding-right: 0; padding-top: 5px">
+                                            <input class="form-control" name="ppPriceVal" type="number" style="width: 100%;">
+                                        </div>
+                                        <div class="col-md-2" style="resize: none; padding-right: 0; padding-top: 5px">
+                                            <select name="ppCurrency" style="width: 100%;"></select>
+                                        </div>
+    <!--                                    <form id="fProductPrice" method="post" enctype="multipart/form-data">-->
+    <!--                                        <input type="hidden" name="productId" th:value="${productId}"/>-->
+    <!--                                    </form>-->
+                                        <div class="col-md-2" style="resize: none; padding-right: 0; padding-top: 5px">
+                                            <input class="form-control" name="spDate" type="date" style="width: 100%; padding:0">
+                                        </div>
+                                        <div class="col-md-2" style="resize: none; padding-right: 0; padding-top: 5px">
+                                            <input class="form-control" name="spPriceVal" type="number" style="width: 100%; padding:0">
+                                        </div>
+                                        <div class="col-md-2" style="resize: none; padding-right: 0; padding-top: 5px">
+                                            <select name="spCurrency" style="width: 100%;"></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- PRODUCT-IMAGES -->
+                            <div id="images" class="tab-pane fade" style="width: 100%;">
+                                <form>
+                                    <input type="hidden" name="productId" th:value="${productId}"/>
+                                    <div class="col-xl-12">
+                                        <label class="form-label" for="file-5">Upload image [JPEG]</label>
+                                        <div id="productImages" style="text-align: center;"></div>
+                                        <input type="file" class="form-control" id="file-5" accept="image/jpeg" style="display: none" multiple/>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- PRODUCT-SIZE -->
+                            <div id="size" class="tab-pane fade" style="width: 100%">
+                                <form id="fpSize" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="productId" th:value="${productId}">
+                                    <div class="col-xl-12">
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- PRODUCT-COLOR -->
+                            <div id="color" class="tab-pane fade" style=" width: 100%">
+                                <form id="fpColor" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="productId" th:value="${productId}">
+                                    <div class="col-xl-12">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="display: flex;flex-direction: column;align-items: end; padding-right: 0; padding-bottom: 0">
+                    <div class="row">
+                        <div class="col-md-12" style="padding-right: 10px">
+                            <button id="saveOrEditAction" type="submit" class="btn btn-lg btn-outline-success" style="margin-right: 5px">
+                                <i class="pe-7s-diskette btn-icon-wrapper"></i> [[#{action.save}]]
+                            </button>
+                            <button type="button" class="btn btn-lg btn-outline-secondary" data-dismiss="modal">
+                                [[#{action.close}]]
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- editModal -->
+    <div class="modal fade" id="editModal" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-popout modal-body" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary-dark">
+                    <h5 class="modal-title">[[#{title.edit(#{page.unit})}]]</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form id="editForm" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <input type="text" name="id" hidden/>
+                                <div class="position-relative form-group">
+                                    <label>[[#{label.name}]] <b class="text-danger">*</b></label>
+                                    <input class="form-control" name="name" type="text" required>
+                                </div>
+                                <div class="position-relative form-group">
+                                    <labeL>[[#{label.symbol}]] <b class="text-danger">*</b></labeL>
+                                    <input class="form-control" name="symbol" type="text" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-row">
+                            <div class="col-md-4" style="display: flex; align-items:center;">
+                                <button id="editAction" type="submit" class="btn btn-sm btn-outline-success">
+                                    <i class="pe-7s-diskette btn-icon-wrapper"></i> [[#{action.save}]]
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">
+                                    [[#{action.close}]]
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- deleteModal -->
+    <div class="modal fade" id="deleteModal" role="dialog" aria-labelledby="deleteModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-popout" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary-dark">
+                    <h5 class="modal-title">[[#{title.delete(#{page.unit})}]]</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label>[[#{text.areYouSureToDeleteThisItem}]]</label>
+                    <input name="id" type="hidden"/>
+                </div>
+                <div class="modal-footer">
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <button id="deleteAction" type="button" class="btn btn-sm btn-outline-danger"
+                                    data-dismiss="modal">
+                                [[#{action.delete}]]
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" data-dismiss="modal">
+                                [[#{action.close}]]
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section layout:fragment="scripts">
+    <script type="application/javascript" th:src="@{/js/product/product.js}"></script>
+    <script type="application/javascript" th:src="@{/js/util/util.js}"></script>
+</section>
+
+</body>
+</html>
